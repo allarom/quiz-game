@@ -1,0 +1,40 @@
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Coda, sans-serif;
+  font-weight: 100;
+  margin: 0;
+  background-color: rgba(16, 62, 83, 0.685);
+}
+
+button {
+  color: rgb(29, 28, 20);
+  background: rgb(182, 142, 57);
+}
+
+h1 {
+  font-size: 3em;
+}
+
+#startscreen {
+  text-align: center;
+}
+#countdown {
+  text-align: center;
+}
+
+#gamescreen {
+  text-align: center;
+}
+
+#game-over {
+  text-align: center;
+}
