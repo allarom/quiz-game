@@ -9,20 +9,29 @@ html {
 }
 
 body {
+  margin: 0;
+}
+
+/* ---- typography ---- */
+
+body {
   font-family: Coda, sans-serif;
   font-weight: 100;
-  margin: 0;
   background-color: rgba(16, 62, 83, 0.685);
 }
 
 button {
   color: rgb(29, 28, 20);
   background: rgb(182, 142, 57);
+  padding: 30px;
 }
 
 h1 {
   font-size: 3em;
 }
+
+
+/* ---- components ---- */
 
 #startscreen {
   text-align: center;
@@ -37,4 +46,33 @@ h1 {
 
 #game-over {
   text-align: center;
+}
+
+#static-element {
+  display: flex;
+  align-content: space-around;
+}
+
+#static-element :first-child {
+  flex: 1 0 50%;
+}
+
+#static-element :nth-child(2) {
+  flex: 1 0 30%;
+}
+
+#question-answer {
+  margin: 20px;
+  display: flex;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+#question-answer h3 {
+  flex:  0 1 100%;
+  text-align: center;
+}
+
+#answer-btn {
+  flex:  0 1 50%;
 }

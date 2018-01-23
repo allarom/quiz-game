@@ -1,15 +1,22 @@
 'use strict';
 
+
 function main() {
 
-  var yourName;
+  var yourName=[];
   var score = 0;
   
   var mainElement = document.querySelector('#site-main');
 
-  var stage;
+  // @todo create/destroy the game instance
   var game;
-  var countdown;
+  var stage;
+
+  // @todo capture user name
+  // var name;
+
+  // @todo ranking
+  //var ranking = [];
 
   // 1. Start Screen
 
@@ -18,12 +25,20 @@ function main() {
   var countDownScreen;
   var gameScreen;
   
+
+  function pushName (name){
+    yourName.push(document.getElementById("name").value);
+  }
+
   var startClick = function () {
+    pushName();
+    // @todo capture user name = yourName.value
     destroyStartScreen();
     buildCountDown();
-  }
-//======================= BuildStartScreen ====================
+    
+  };
 
+  // ===================== BuildStartScreen ====================
 
   function buildStartScreen(){
     stage = 'startscreen';
@@ -41,36 +56,39 @@ function main() {
     startScreen.appendChild(enterName);
 
     // 1.2 Creates DOM elements Input Name
-    var yourName = document.createElement('input');
-    startScreen.appendChild(yourName);
+    var nameElm = document.createElement('input');
+    nameElm.setAttribute("id", 'name');
+    nameElm.setAttribute('type', 'text');
+    nameElm.setAttribute('value', '');
+    startScreen.appendChild(nameElm);
 
     // 1.3 Creates DOM element Start button
     startButton = document.createElement('button');
     startButton.innerText = 'START';
     startScreen.appendChild(startButton);
 
-     // 1.4 Appends to #site-main
-     mainElement.appendChild(startScreen);
+    // 1.4 Appends to #site-main
+    mainElement.appendChild(startScreen);
 
-     // 1.5 Binds EventListener on Start Button 
-     startButton.addEventListener('click', startClick);
+    // 1.5 Binds EventListener on Start Button 
+    startButton.addEventListener('click', startClick);
   }
 
-  //==================== DestroyStartScreen =====================
+  // ==================== DestroyStartScreen ===================
 
   function destroyStartScreen() {
-     // 1.6 Removes EventListener on Start Button
+    // 1.6 Removes EventListener on Start Button
     startButton.removeEventListener('click', startClick);
 
     // 1.7 Removes startScreen on Start Button
     startScreen.remove();
   }
 
-    //================== BuildCountDown =========================
+  // ================== BuildCountDown =========================
 
-    //-> 2. Starts Count Down
+  //-> 2. Starts Count Down
   function buildCountDown() {
-    countdown = 'countdown';
+    stage = 'countdown';
 
     // 2.1 Creates <div> #countdown
     countDownScreen = document.createElement('div');
@@ -88,49 +106,81 @@ function main() {
     window.setTimeout(function () {
       destroyCountDown();
       buildGame();
-    }, 5000);
+    }, 100);
   }
 
-    //================== DestroyCountDown =========================
+  // ================== DestroyCountDown ==================
 
-   // 2.5 Destroys Count Down
+  // 2.5 Destroys Count Down
   function destroyCountDown() {
-   countDownScreen.remove();
- }
-
-   //================== BuildGame =========================
-
-  // 3. Builds the Game
-  function buildGame() {
-    game = 'gamescreen';
-
-    // 2.1 Creates <div> #gamescreen
-    gameScreen = document.createElement('div');
-    gameScreen.setAttribute('id', 'gamescreen');
-
-    // 2.2 Creates <h1> countDownTitle
-    var gameScreenTitle = document.createElement('h1');
-    gameScreenTitle.innerText = 'Game';
-    gameScreen.appendChild(gameScreenTitle);
-
-    // 2.3 Appends countDownScreen to #site-main
-    mainElement.appendChild(gameScreen);
-
-    // 2.4 Puts setTimeout on Count Down
-    window.setTimeout(function () {
-      destroyGame();
-      buildGameOver();
-    }, 5000);
+    countDownScreen.remove();
   }
 
-//================== DestroyGame =========================
+  // ================== BuildGame =========================
+
+  //  Builds the Game
+  function buildGame() {
+    stage = 'gamescreen';
+    game = new Game(mainElement, catalog);
+    game.nextQuestion();
+    // function createAnswer (){
+    //   var currentQuestNumber = 0;
+      
+    //   //Get Text of the question
+    //   var currentQuestText = catalog[0].question;
+
+    //   // <div> for question
+    //   var divContainerQuest = document.createElement('div');
+    //   divContainerQuest.setAttribute('id','question-answer');
+
+    //   //Appending Question to <div>
+    //   // divContainerQuest.appendChild(currentQuestText);
+    //   document.body.insertBefore(currentQuestText, divContainerQuest);
+
+    //   //Number of Answers
+    //   var numberOfAnswers = catalog[currentQuestNumber].answers.length;
+
+    //   // Loop for Answers
+    //   for(var x=0; x < numberOfAnswers; x++) {
+    //   var currentAnswerText = catalog[currentQuestNumber].answers.text;
+
+    //   // Buttons for Answers
+    //   var answerBtn = document.createElement('button');
+
+    //   // Text for Answers
+    //   var newContent = document.createTextNode(currentAnswerText);
+
+    //   // add the value inside the Array by using the createTextNode Function
+    //   answerBtn.appendChild(newContent); 
+    
+    //   //Print out the newly created content
+    //   var currentDiv = document.getElementById("question-answer");
+    //   document.body.insertBefore(answerBtn, currentDiv);
+    // }
+
+    // }
+  }
+
+    // @todo 2.4 create the game instance
+    
+    // game.nextQuestion();
+
+    // 2.5 Puts setTimeout on Count Down
+  //   window.setTimeout(function () {
+  //     destroyGame();
+  //     buildGameOver();
+  //   }, 5000);
+  // }
+
+  // ================== DestroyGame =========================
 
 
-function destroyGame() {
-  gameScreen.remove();
-}
+  function destroyGame() {
+    // @todo destroy the game instance
+    game.destroy();
+  }
 
-  //================== BuildGameOver ====================
+  // ================== BuildGameOver ====================
 
   var gameOverElm;
   var playAgainBtn;
@@ -142,6 +192,8 @@ function destroyGame() {
   function buildGameOver() {
     stage = 'gameOver';
 
+    // @todo push the user name AND the game.score to the ranking
+
     // 
     gameOverElm = document.createElement('div');
     gameOverElm.setAttribute('id', 'game-over');
@@ -151,7 +203,7 @@ function destroyGame() {
     gameOverElm.appendChild(title);
 
     var yourScore = document.createElement('h2');
-    yourScore.innerText = 'Your Score: ' + game.score;
+    yourScore.innerText = 'Your Score: ' + 33; // @todo use the real game game.score;
     gameOverElm.appendChild(yourScore);
 
     playAgainBtn = document.createElement('button');
@@ -173,7 +225,7 @@ function destroyGame() {
   }
 
 
-    buildStartScreen();
+  buildStartScreen();
   
 }
 
