@@ -13,11 +13,11 @@ var catalog = [{
     },
     {
       text: "Answer Q1 3",
-      correct: false
+      correct: true
     },
     {
       text: "Answer Q1 4",
-      correct: true
+      correct: false
      } ]
   },
 

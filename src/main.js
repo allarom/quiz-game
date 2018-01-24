@@ -3,7 +3,7 @@
 
 function main() {
 
-  var yourName=[];
+  var yourName;
   var score = 0;
   
   var mainElement = document.querySelector('#site-main');
@@ -18,7 +18,6 @@ function main() {
   // @todo ranking
   //var ranking = [];
 
-  // 1. Start Screen
 
   var startScreen;
   var startButton;
@@ -26,19 +25,16 @@ function main() {
   var gameScreen;
   
 
-  function pushName (name){
-    yourName.push(document.getElementById("name").value);
-  }
+  
 
   var startClick = function () {
-    pushName();
-    // @todo capture user name = yourName.value
+    var yourName = document.getElementById("name").value;
     destroyStartScreen();
-    buildCountDown();
+    buildCountDown(yourName);
     
   };
 
-  // ===================== BuildStartScreen ====================
+  // ===================== BuildStartScreen ==============
 
   function buildStartScreen(){
     stage = 'startscreen';
@@ -74,7 +70,7 @@ function main() {
     startButton.addEventListener('click', startClick);
   }
 
-  // ==================== DestroyStartScreen ===================
+  // ==================== DestroyStartScreen ==============
 
   function destroyStartScreen() {
     // 1.6 Removes EventListener on Start Button
@@ -84,10 +80,11 @@ function main() {
     startScreen.remove();
   }
 
-  // ================== BuildCountDown =========================
+  // ================== BuildCountDown ====================
 
   //-> 2. Starts Count Down
-  function buildCountDown() {
+  function buildCountDown(yourName) {
+    var yourName;
     stage = 'countdown';
 
     // 2.1 Creates <div> #countdown
@@ -105,7 +102,7 @@ function main() {
     // 2.4 Puts setTimeout on Count Down
     window.setTimeout(function () {
       destroyCountDown();
-      buildGame();
+      buildGame(yourName);
     }, 100);
   }
 
@@ -119,60 +116,17 @@ function main() {
   // ================== BuildGame =========================
 
   //  Builds the Game
-  function buildGame() {
+  function buildGame(yourName) {
+   var yourName;
     stage = 'gamescreen';
-    game = new Game(mainElement, catalog);
+    game = new Game(mainElement, catalog, yourName);
     game.nextQuestion();
-    // function createAnswer (){
-    //   var currentQuestNumber = 0;
-      
-    //   //Get Text of the question
-    //   var currentQuestText = catalog[0].question;
-
-    //   // <div> for question
-    //   var divContainerQuest = document.createElement('div');
-    //   divContainerQuest.setAttribute('id','question-answer');
-
-    //   //Appending Question to <div>
-    //   // divContainerQuest.appendChild(currentQuestText);
-    //   document.body.insertBefore(currentQuestText, divContainerQuest);
-
-    //   //Number of Answers
-    //   var numberOfAnswers = catalog[currentQuestNumber].answers.length;
-
-    //   // Loop for Answers
-    //   for(var x=0; x < numberOfAnswers; x++) {
-    //   var currentAnswerText = catalog[currentQuestNumber].answers.text;
-
-    //   // Buttons for Answers
-    //   var answerBtn = document.createElement('button');
-
-    //   // Text for Answers
-    //   var newContent = document.createTextNode(currentAnswerText);
-
-    //   // add the value inside the Array by using the createTextNode Function
-    //   answerBtn.appendChild(newContent); 
     
-    //   //Print out the newly created content
-    //   var currentDiv = document.getElementById("question-answer");
-    //   document.body.insertBefore(answerBtn, currentDiv);
-    // }
 
-    // }
   }
 
-    // @todo 2.4 create the game instance
-    
-    // game.nextQuestion();
 
-    // 2.5 Puts setTimeout on Count Down
-  //   window.setTimeout(function () {
-  //     destroyGame();
-  //     buildGameOver();
-  //   }, 5000);
-  // }
-
-  // ================== DestroyGame =========================
+  // ================== DestroyGame =======================
 
 
   function destroyGame() {
