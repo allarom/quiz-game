@@ -10,77 +10,112 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
 }
 
 /* ---- typography ---- */
 
 body {
   font-family: Coda, sans-serif;
-  font-weight: 100;
-  background-color: rgba(16, 62, 83, 0.685);
-}
+  height: 1000px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 100%, #1d1e26);
+  background-repeat: no-repeat;
+  }
+
 
 button {
-  color: rgb(29, 28, 20);
-  background: rgb(182, 142, 57);
-  padding: 10px;
+  color: rgb(41, 39, 28);
+  background: rgb(216, 181, 107);
+  padding: 16px;
+  border: none;
+}
+#answer-btn:activ {
+  border: none;
 }
 
 h1 {
   font-size: 3em;
+
 }
 
-
+h3 {
+  font-size: 2em;
+  color:rgb(216, 181, 107);
+  text-shadow: 1px 1px 1px #000;
+}
 /* ---- components ---- */
 
-input {
-  font-size: 1.1em;
-  padding: 10px;
-  border: none;
-}
 
 #startscreen {
   text-align: center;
 }
 
+#startscreen h1 {
+  font-family: 'Baloo Bhaijaan';
+  font-size: 7em;
+  background: -webkit-linear-gradient(rgb(212, 181, 6), rgb(146, 83, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+
 #startscreen button {
-  padding: 15px;
+  padding: 10px;
   border: none;
-  margin: 10px;
+  margin-left: 10px;
+  font-size: 1.2em;
+  width: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+
+input {
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #countdown {
   text-align: center;
-  font-size: 4em;
-  color: white;
+  font-size: 6em;
+  color: rgb(216, 181, 107);
+  text-shadow: 1px 1px 1px #000;
 }
 
 #gamescreen {
   text-align: center;
+
 }
 
 #game-over {
   text-align: center;
+  color: white;
 }
 
 #game-over button {
   width: 20%;
   font-size: 1.8em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #static-element {
   margin: 20px;
   display: flex;
   align-content: space-around;
+  color: white;
 }
 
 #static-element :first-child {
   flex: 1 0 30%;
 }
 
-#static-element :nth-child(2) {
+/* #static-element :nth-child(2) {
   flex: 1 0 30%;
-}
+} */
 
 #static-element p {
   font-size: 1.5em;
@@ -105,14 +140,21 @@ input {
   flex:  0 1 40%;
   font-size: 1.7em;
   margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+  text-decoration: none;
 }
 
 
 .true-answer {
-  background: rgb(45, 117, 12);
+  background: rgb(23, 65, 4);
+  border: none;
+  text-decoration: none;
 }
 
 .false-answer {
   background: rgb(219, 66, 5);
+  border: none;
+  text-decoration: none;
 }
 
