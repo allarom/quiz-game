@@ -34,12 +34,21 @@ h1 {
 /* ---- components ---- */
 
 input {
-  margin: 10px;
+  font-size: 1.1em;
+  padding: 10px;
+  border: none;
 }
 
 #startscreen {
   text-align: center;
 }
+
+#startscreen button {
+  padding: 15px;
+  border: none;
+  margin: 10px;
+}
+
 #countdown {
   text-align: center;
 }
@@ -59,11 +68,15 @@ input {
 }
 
 #static-element :first-child {
-  flex: 1 0 50%;
+  flex: 1 0 30%;
 }
 
 #static-element :nth-child(2) {
   flex: 1 0 30%;
+}
+
+#static-element p {
+  font-size: 1.5em;
 }
 
 #question-answer {
@@ -71,17 +84,20 @@ input {
   display: flex;
   align-content: space-around;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #question-answer h3 {
   flex:  0 1 100%;
   text-align: center;
   font-size: 2em;
+  
 }
 
 #answer-btn {
-  flex:  0 1 50%;
+  flex:  0 1 40%;
   font-size: 1.7em;
+  margin: 5px;
 }
 
 
@@ -92,3 +108,4 @@ input {
 .false-answer {
   background: rgb(219, 66, 5);
 }
+

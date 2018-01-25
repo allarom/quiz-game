@@ -1,20 +1,18 @@
 'use strict';
 
+var REVEAL_MS = 1000;
 
 function Game(parentElement, catalog, yourName) {
   var self = this;
 
-  self.currentQuestion = 0;
+  
   self.score = 0;
   
   self.parentElement = parentElement;
   self.catalog = catalog;
-  
+  self.currentQuestion = Math.floor(Math.random()*self.catalog.length);
   self.name = yourName;
 
-  function getTheName (){
-    return yourName;
-  }
 
   // Creates parent div for static elements score, time, name
   self.gameElement = document.createElement('div');
@@ -28,9 +26,9 @@ function Game(parentElement, catalog, yourName) {
   self.staticElement.appendChild(yourName);
 
   // Creates score
-  var yourScore = document.createElement('p');
-  yourScore.innerText = 'Score: ' + self.score;
-  self.staticElement.appendChild(yourScore);
+  self.yourScore = document.createElement('p');
+  self.yourScore.innerText = 'Score: ' + self.score;
+  self.staticElement.appendChild(self.yourScore);
 
   // Creates time
   var yourTime = document.createElement('p');
@@ -43,18 +41,35 @@ function Game(parentElement, catalog, yourName) {
 
 }
 
+
 Game.prototype.nextQuestion = function () {
+  var self = this;
+
+  self.questionStage.remove();
+
+  self.currentQuestion++;
+
+  if (self.currentQuestion < self.catalog.length) {
+    self.buildQuestion();
+  }
+  else {
+    self.finish();
+  }
+}
+
+
+Game.prototype.buildQuestion = function () {
   var self = this;
 
   var question = self.catalog[self.currentQuestion];
 
   // Builds the Question
-  var questionStage = document.createElement('div');
-  questionStage.setAttribute('id', 'question-answer');
+  self.questionStage = document.createElement('div');
+  self.questionStage.setAttribute('id', 'question-answer');
 
   var questionText = document.createElement('h3');
   questionText.innerText = question.prompt;
-  questionStage.appendChild(questionText);
+  self.questionStage.appendChild(questionText);
 
 
   // Current Number of answers
@@ -70,43 +85,56 @@ Game.prototype.nextQuestion = function () {
     // Eventlistener 
     answerBtn.addEventListener('click', function (event) {
       console.log(event.target);
-      console.log(event.target.getAttribute('data-x'));
-      answerClick() 
+      var answerNumber = event.target.getAttribute('data-x');
+      if (question.answers[answerNumber].correct) {
+        self.revealAnswer(event.target, true);
+      }
+      else {
+        self.revealAnswer(event.target, false);
+      }
     });
 
-    var trueOrFalse = question.answers[x].correct;
-
-    // var firstAnswer = document.querySelector('button[data-x="1"]');
-    var firstAnswer = question.answers[0].correct;
-    var secondAnswer = question.answers[1].correct;
-    var thirdAnswer = question.answers[2].correct;
-    var fourthAnswer = question.answers[3].correct;
-    
-    /////////////////////////////////////////////////////
-    // Answer click function
-    function answerClick() {
-      
-      if (firstAnswer, secondAnswer ,thirdAnswer , fourthAnswer ){
-        event.target.setAttribute('class', 'true-answer');
-      } else if (firstAnswer === false || secondAnswer === false || thirdAnswer === false || fourthAnswer === false ){
-        event.target.setAttribute('class', 'false-answer');
-      } else {
-        return;
-      }
-     
-
-    }
-    /////////////////////////////////////////////////////
-
-    questionStage.appendChild(answerBtn);
+    self.questionStage.appendChild(answerBtn);
   }
 
-  self.gameElement.appendChild(questionStage);
-  
+  self.gameElement.appendChild(self.questionStage);
 }
 
 
-// destroy  -> self.gameElement.remove()
+Game.prototype.revealAnswer = function (answerElement, isCorrect) {
+  var self = this;
+
+  if (isCorrect){
+    self.score++;
+    self.yourScore.innerText = 'Score: ' + self.score;
+    answerElement.setAttribute('class', 'true-answer');
+  } else  {
+    self.score--;
+    self.yourScore.innerText = 'Score: ' + self.score;
+    answerElement.setAttribute('class', 'false-answer');
+  }
+
+  window.setTimeout(function () {
+    self.nextQuestion();
+  }, REVEAL_MS);
+};
 
 
- // 3. Adds an eventListener to each <Button>
+Game.prototype.onGameOver = function(callback){
+  var self = this;
+  self.onEndedCallback = callback;
+  // self.onEnded()
+}
+  
+Game.prototype.finish = function() {
+  var self = this;
+
+  self.onEndedCallback();
+};
+
+
+Game.prototype.destroy = function() {
+  var self = this; 
+  
+  self.gameElement.remove();
+};

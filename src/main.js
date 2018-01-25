@@ -5,6 +5,7 @@ function main() {
 
   var yourName;
   var score = 0;
+  self.onEnded;
   
   var mainElement = document.querySelector('#site-main');
 
@@ -34,7 +35,7 @@ function main() {
     
   };
 
-  // ===================== BuildStartScreen ==============
+  // =================== BuildStartScreen ==============
 
   function buildStartScreen(){
     stage = 'startscreen';
@@ -86,24 +87,29 @@ function main() {
   function buildCountDown(yourName) {
     var yourName;
     stage = 'countdown';
+    var countDown = 3;
 
     // 2.1 Creates <div> #countdown
     countDownScreen = document.createElement('div');
     countDownScreen.setAttribute('id', 'countdown');
+    mainElement.appendChild(countDownScreen);
 
-    // 2.2 Creates <h1> countDownTitle
+    // 2.2 Appends countDownScreen to #site-main
     var countDownTitle = document.createElement('h1');
-    countDownTitle.innerText = 'Lets play!';
     countDownScreen.appendChild(countDownTitle);
 
-    // 2.3 Appends countDownScreen to #site-main
-    mainElement.appendChild(countDownScreen);
+    // 2.3 Creates setInterval with Count Down
+    var intervalId = setInterval(function () {
+      countDownTitle.innerText = countDown;
+      countDown--;
+    }, 1000)
 
     // 2.4 Puts setTimeout on Count Down
     window.setTimeout(function () {
       destroyCountDown();
+      clearInterval(intervalId);
       buildGame(yourName);
-    }, 100);
+    }, 3500);
   }
 
   // ================== DestroyCountDown ==================
@@ -120,13 +126,17 @@ function main() {
    var yourName;
     stage = 'gamescreen';
     game = new Game(mainElement, catalog, yourName);
-    game.nextQuestion();
+    game.buildQuestion();
     
+    game.onGameOver(function () {
+      destroyGame();
+      buildGameOver(yourName);
+    })
 
   }
 
 
-  // ================== DestroyGame =======================
+  // ================== DestroyfGame =====================
 
 
   function destroyGame() {
@@ -145,6 +155,7 @@ function main() {
 
   function buildGameOver() {
     stage = 'gameOver';
+    var yourName;
 
     // @todo push the user name AND the game.score to the ranking
 
@@ -157,8 +168,12 @@ function main() {
     gameOverElm.appendChild(title);
 
     var yourScore = document.createElement('h2');
-    yourScore.innerText = 'Your Score: ' + 33; // @todo use the real game game.score;
+    yourScore.innerText = 'Your Score: ' + game.score;
     gameOverElm.appendChild(yourScore);
+
+    var yourName = document.createElement('p');
+    yourName.innerText = 'Name: ' + yourName;
+    gameOverElm.appendChild(yourName);
 
     playAgainBtn = document.createElement('button');
     playAgainBtn.innerText = 'Play again';
