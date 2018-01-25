@@ -10,9 +10,10 @@ function Game(parentElement, catalog, yourName) {
   
   self.parentElement = parentElement;
   self.catalog = catalog;
-  self.currentQuestion = Math.floor(Math.random()*self.catalog.length);
+  self.currentQuestion =0;
   self.name = yourName;
 
+  // Math.floor(Math.random()*self.catalog.length)
 
   // Creates parent div for static elements score, time, name
   self.gameElement = document.createElement('div');
@@ -31,9 +32,9 @@ function Game(parentElement, catalog, yourName) {
   self.staticElement.appendChild(self.yourScore);
 
   // Creates time
-  var yourTime = document.createElement('p');
-  yourTime.innerText = 'Time: ' + self.time;
-  self.staticElement.appendChild(yourTime);
+  // var yourTime = document.createElement('p');
+  // yourTime.innerText = 'Time: ' + self.time;
+  // self.staticElement.appendChild(yourTime);
 
   self.gameElement.appendChild(self.staticElement);
   // 2.3 Appends self.gameElement to #site-main

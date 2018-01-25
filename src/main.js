@@ -171,9 +171,9 @@ function main() {
     yourScore.innerText = 'Your Score: ' + game.score;
     gameOverElm.appendChild(yourScore);
 
-    var yourName = document.createElement('p');
-    yourName.innerText = 'Name: ' + yourName;
-    gameOverElm.appendChild(yourName);
+    // var yourName = document.createElement('p');
+    // yourName.innerText = 'Name: ' + yourName;
+    // gameOverElm.appendChild(yourName);
 
     playAgainBtn = document.createElement('button');
     playAgainBtn.innerText = 'Play again';

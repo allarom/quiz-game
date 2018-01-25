@@ -1,6 +1,71 @@
 'use strict';
 
-var catalog = [{
+var catalog = [
+  {
+    prompt: "When was JavaScript created?",
+    answers: [
+      {
+        text: "1995",
+        correct: true
+      },
+      {
+        text: "1982",
+        correct: false
+      },
+      {
+        text: "1987",
+        correct: false
+      },
+      {
+        text: "2001",
+        correct: false
+        }]
+      },
+
+  {
+  prompt: "What is the name of plain JavaScript?",
+  answers: [
+    {
+      text: "Stracciatella JS",
+      correct: false
+    },
+    {
+      text: "Backbone",
+      correct: false
+    },
+    {
+      text: "jQuery",
+      correct: false
+    },
+    {
+      text: "VanillaJS",
+      correct: true
+      }]
+    },
+
+  {
+    prompt: "What's the difference between JavaScript and Java?",
+    answers: [
+      {
+        text: "Java and Javascript are similar like Car and Carpet are similar.",
+        correct: true
+      },
+      {
+        text: "Both are created for developing of standalone applications run in secure, sandboxed environments.",
+        correct: false
+      },
+      {
+        text: "Java is the short name for JavaScript.",
+        correct: false
+      },
+      {
+        text: "JavaScript has become popular in mobile devices,",
+        correct: false
+        }]
+      },
+          
+    
+  {
   prompt: "What you wanted was a banana, what you got was a gorilla holding the banana, and the entire jungle. Who said that and what the problem is about?",
   answers: [
     {
@@ -59,7 +124,7 @@ var catalog = [{
       correct: false
     },
     {
-      text: "Answer Q3 4",
+      text: "Prototype theory is a mode of graded categorization in computer science.",
       correct: false
      }]
     },
@@ -106,69 +171,6 @@ var catalog = [{
      }]
     },
 
- {
-  prompt: "What is Encapsulation?",
-  answers: [
-    {
-      text: "A way of arranging complexity where the more complex details are suppressed below the current level (hidden).",
-      correct: false
-    },
-    {
-      text: "When invoking a method on an object, this becomes the object itself.",
-      correct: false
-    },
-    {
-      text: "To put all the data attributes of an object and its inner working (methods) inside of it.",
-      correct: true
-    },
-    {
-      text: "It is an object that contains the constructor of the instance, the methods and properties of the prototype",
-      correct: false
-      }]
-    },
-  
-{
-  prompt: "When was JavaScript created?",
-  answers: [
-    {
-      text: "1995",
-      correct: true
-    },
-    {
-      text: "1982",
-      correct: false
-    },
-    {
-      text: "1987",
-      correct: false
-    },
-    {
-      text: "2001",
-      correct: false
-      }]
-    },
-
-{
-  prompt: "What is the name of plain JavaScript?",
-  answers: [
-    {
-      text: "Stracciatella JS",
-      correct: false
-    },
-    {
-      text: "Backbone",
-      correct: false
-    },
-    {
-      text: "jQuery",
-      correct: false
-    },
-    {
-      text: "VanillaJS",
-      correct: true
-      }]
-    },
-
 {
   prompt: "What would following code return? console.log(typeof typeof 1);",
   answers: [
@@ -206,13 +208,13 @@ var catalog = [{
       correct: false
     },
     {
-      text: "Node.JS",
+      text: "Meteor.js",
       correct: false
       }]
     },
   
 {
-  prompt: "What would following code return? console.log(0.1 + 0.2);",
+  prompt: "What would following code return?   console.log(0.1 + 0.2);",
   answers: [
     {
       text: "0.30000000000000004",
@@ -231,6 +233,28 @@ var catalog = [{
       correct: false
       }]
     },
+
+  {
+  prompt: "What is Encapsulation?",
+  answers: [
+    {
+      text: "A way of arranging complexity where the more complex details are suppressed below the current level (hidden).",
+      correct: false
+    },
+    {
+      text: "When invoking a method on an object, this becomes the object itself.",
+      correct: false
+    },
+    {
+      text: "To put all the data attributes of an object and its inner working (methods) inside of it.",
+      correct: true
+    },
+    {
+      text: "It is an object that contains the constructor of the instance, the methods and properties of the prototype",
+      correct: false
+      }]
+    },
+    
 
 {
   prompt: "What is not a part of a MEAN, open-source JavaScript software stack?",
@@ -272,156 +296,10 @@ var catalog = [{
       text: "ECMAScript is scripting-language specification for JavaScript standardisation.",
       correct: true
       }]
-    },
+    }
 
-{
-  prompt: "What's the difference between JavaScript and Java?",
-  answers: [
-    {
-      text: "Java and Javascript are similar like Car and Carpet are similar.",
-      correct: true
-    },
-    {
-      text: "Java is the short name for JavaScript.",
-      correct: false
-    },
-    {
-      text: "Both are created for developing of standalone applications run in secure, sandboxed environments.",
-      correct: false
-    },
-    {
-      text: "JavaScript has become popular in mobile devices,",
-      correct: false
-      }]
-    },
-      
-{
-  prompt: "This is the test question 15",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: false
-    },
-    {
-      text: "Answer Q5 2",
-      correct: false
-    },
-    {
-      text: "Answer Q5 3",
-      correct: true
-    },
-    {
-      text: "Answer Q5 4",
-      correct: false
-      }]
-    },
-  
-{
-  prompt: "This is the test question 16",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: false
-    },
-    {
-      text: "Answer Q5 2",
-      correct: true
-    },
-    {
-      text: "Answer Q5 3",
-      correct: false
-    },
-    {
-      text: "Answer Q5 4",
-      correct: false
-      }]
-    },
 
-{
-  prompt: "This is the test question 17",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: true
-    },
-    {
-      text: "Answer Q5 2",
-      correct: false
-    },
-    {
-      text: "Answer Q5 3",
-      correct: false
-    },
-    {
-      text: "Answer Q5 4",
-      correct: false
-      }]
-    },
 
-{
-  prompt: "This is the test question 18",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: false
-    },
-    {
-      text: "Answer Q5 2",
-      correct: true
-    },
-    {
-      text: "Answer Q5 3",
-      correct: false
-    },
-    {
-      text: "Answer Q5 4",
-      correct: false
-      }]
-    },
-
-{
-  prompt: "This is the test question 19",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: false
-    },
-    {
-      text: "Answer Q5 2",
-      correct: false
-    },
-    {
-      text: "Answer Q5 3",
-      correct: false
-    },
-    {
-      text: "Answer Q5 4",
-      correct: true
-      }]
-    },
-      
-{
-  prompt: "This is the test question 20",
-  answers: [
-    {
-      text: "Answer Q5 1",
-      correct: false
-    },
-    {
-      text: "Answer Q5 2",
-      correct: false
-    },
-    {
-      text: "Answer Q5 3",
-      correct: false
-    },
-    {
-      text: "Answer Q5 4",
-      correct: true
-      }]
-    },
-      
-
-   
+ 
    
     ]
