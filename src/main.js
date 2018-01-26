@@ -138,9 +138,12 @@ function main() {
 
   // ================== DestroyfGame =====================
 
+  var answerBtn;
+  var buttonAnswerBtnClick;
 
   function destroyGame() {
-    // @todo destroy the game instance
+   // @todo destroy the game instance
+  
     game.destroy();
   }
 

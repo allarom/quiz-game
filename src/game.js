@@ -61,6 +61,7 @@ Game.prototype.nextQuestion = function () {
 
 Game.prototype.buildQuestion = function () {
   var self = this;
+  self.buttonAnswerBtnClick = buttonAnswerBtnClick;
 
   var question = self.catalog[self.currentQuestion];
 
@@ -84,7 +85,7 @@ Game.prototype.buildQuestion = function () {
     answerBtn.innerText = question.answers[x].text;
 
     // Eventlistener 
-    answerBtn.addEventListener('click', function (event) {
+    var buttonAnswerBtnClick = answerBtn.addEventListener('click', function (event) {
       console.log(event.target);
       var answerNumber = event.target.getAttribute('data-x');
       if (question.answers[answerNumber].correct) {
@@ -94,7 +95,6 @@ Game.prototype.buildQuestion = function () {
         self.revealAnswer(event.target, false);
       }
     });
-
     self.questionStage.appendChild(answerBtn);
   }
 
@@ -114,11 +114,18 @@ Game.prototype.revealAnswer = function (answerElement, isCorrect) {
     self.yourScore.innerText = 'Score: ' + self.score;
     answerElement.setAttribute('class', 'false-answer');
   }
-
-  window.setTimeout(function () {
-    self.nextQuestion();
+  var questionTimout = window.setTimeout(function () {
+     self.nextQuestion();
   }, REVEAL_MS);
+
+  clearTimoutForQuestion(questionTimout);
+
+  function clearTimoutForQuestion (clear){
+    clearTimeout();
+  }
 };
+
+
 
 
 Game.prototype.onGameOver = function(callback){

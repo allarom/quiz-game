@@ -30,9 +30,22 @@ button {
   background: rgb(216, 181, 107);
   padding: 16px;
   border: none;
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 #answer-btn:activ {
   border: none;
+}
+
+#answer-btn:active,
+#answer-btn:focus,
+#answer-btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 h1 {
@@ -54,7 +67,7 @@ h3 {
 
 #startscreen h1 {
   font-family: 'Baloo Bhaijaan';
-  font-size: 7em;
+  font-size: 7rem;
   background: -webkit-linear-gradient(rgb(212, 181, 6), rgb(146, 83, 0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -143,11 +156,12 @@ input {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border: none;
   text-decoration: none;
+  
 }
 
 
 .true-answer {
-  background: rgb(23, 65, 4);
+  background: rgb(42, 116, 9);
   border: none;
   text-decoration: none;
 }
